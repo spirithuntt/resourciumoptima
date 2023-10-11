@@ -1,35 +1,33 @@
 package com.resourciumoptima;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManager;
 import java.io.*;
-import jakarta.servlet.ServletContext;
+
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+@WebServlet(name = "HelloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
+
     private String message;
 
-    @Override
-    public void init() throws ServletException {
+    private EntityManagerFactory emf;
+
+    public void init() {
         message = "Hello World!";
 
-        // Create the EntityManagerFactory
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("your-persistence-unit-name");
-
-        // Store the EntityManagerFactory in the servlet context
-        ServletContext context = getServletContext();
-        context.setAttribute("entityManagerFactory", emf);
+        // Create the EntityManagerFactory using the
+        // persistence-unit name from persistence.xml
+        emf = Persistence.createEntityManagerFactory("com.resourciumoptima");
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        // Your application logic here, including creating EntityManagers
-
-        // Close EntityManagers when done
+        // Your application logic here
 
         // Hello
         PrintWriter out = response.getWriter();
@@ -38,11 +36,8 @@ public class HelloServlet extends HttpServlet {
         out.println("</body></html>");
     }
 
-    @Override
     public void destroy() {
-        // Retrieve and close the EntityManagerFactory
-        ServletContext context = getServletContext();
-        EntityManagerFactory emf = (EntityManagerFactory) context.getAttribute("entityManagerFactory");
+        // Close the EntityManagerFactory when the servlet is destroyed
         if (emf != null && emf.isOpen()) {
             emf.close();
         }

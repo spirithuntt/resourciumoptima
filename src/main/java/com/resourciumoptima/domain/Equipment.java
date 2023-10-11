@@ -1,13 +1,29 @@
-package com.resourciumoptima;
+package com.resourciumoptima.domain;
+
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 public class Equipment {
     // Attributs : id, nom, type, date d'achat, date de maintenance, état, etc.
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(name = "name")
     private String name;
+    @Column(name = "type")
     private String type;
+    @Column (name = "purchaseDate")
     private String purchaseDate;
+    @Column (name = "maintenanceDate")
     private String maintenanceDate;
+    @Column (name = "state")
     private String state;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     public Equipment() {
     }
@@ -78,5 +94,18 @@ public class Equipment {
                 ", maintenanceDate='" + maintenanceDate + '\'' +
                 ", state='" + state + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Equipment equipment = (Equipment) o;
+        return id == equipment.id && Objects.equals(name, equipment.name) && Objects.equals(type, equipment.type) && Objects.equals(purchaseDate, equipment.purchaseDate) && Objects.equals(maintenanceDate, equipment.maintenanceDate) && Objects.equals(state, equipment.state) && Objects.equals(employee, equipment.employee);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, type, purchaseDate, maintenanceDate, state, employee);
     }
 }

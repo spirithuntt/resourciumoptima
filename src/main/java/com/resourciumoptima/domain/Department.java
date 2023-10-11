@@ -1,9 +1,11 @@
-package com.resourciumoptima;
+package com.resourciumoptima.domain;
 
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Department {
@@ -18,7 +20,7 @@ public class Department {
     private String departmentHead;
 
     @OneToMany(mappedBy = "department")
-    List<Employee> employees;
+    private List<Employee> employees;
 
     public Department() {
     }
@@ -69,5 +71,18 @@ public class Department {
                 ", description='" + description + '\'' +
                 ", departmentHead='" + departmentHead + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(departmentHead, that.departmentHead) && Objects.equals(employees, that.employees);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, departmentHead, employees);
     }
 }

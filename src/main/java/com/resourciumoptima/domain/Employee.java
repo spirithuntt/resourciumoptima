@@ -1,7 +1,9 @@
-package com.resourciumoptima;
+package com.resourciumoptima.domain;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 @Entity
 public class Employee {
@@ -118,6 +120,19 @@ public class Employee {
                 ", position='" + position + '\'' +
                 ", hiringDate='" + hiringDate + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id && Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(name, employee.name) && Objects.equals(firstname, employee.firstname) && Objects.equals(email, employee.email) && Objects.equals(position, employee.position) && Objects.equals(hiringDate, employee.hiringDate) && Objects.equals(department, employee.department);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, name, firstname, email, position, hiringDate, department);
     }
 }
 
