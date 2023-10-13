@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+@Entity
 public class Equipment {
     // Attributs : id, nom, type, date d'achat, date de maintenance, état, etc.
     @Id

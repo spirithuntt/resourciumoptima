@@ -1,45 +1,28 @@
 package com.resourciumoptima;
 
-import jakarta.persistence.EntityManager;
 import java.io.*;
 
+import com.resourciumoptima.repository.EmployeeRepository;
+import com.resourciumoptima.utils.HibernateUtil;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "HelloServlet", value = "/hello-servlet")
+@WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
-
     private String message;
-
-    private EntityManagerFactory emf;
+    private EntityManagerFactory sessionFactory;
 
     public void init() {
         message = "Hello World!";
-
-        // Create the EntityManagerFactory using the
-        // persistence-unit name from persistence.xml
-        emf = Persistence.createEntityManagerFactory("com.resourciumoptima");
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html");
-
-        // Your application logic here
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        sessionFactory = HibernateUtil.getEntityManagerFactory();
+        PrintWriter printWriter = new PrintWriter(System.out);
+        printWriter.println("Session factory is created in init: " + sessionFactory);
     }
 
     public void destroy() {
-        // Close the EntityManagerFactory when the servlet is destroyed
-        if (emf != null && emf.isOpen()) {
-            emf.close();
-        }
     }
 }

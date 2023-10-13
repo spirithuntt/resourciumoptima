@@ -10,6 +10,7 @@ public class Employee {
     //Employé : Attributs : id, nom d'utilisateur, mot de passe, nom, prénom, adresse e-mail, poste, date d'embauche, etc.
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "username")
     private String username;
