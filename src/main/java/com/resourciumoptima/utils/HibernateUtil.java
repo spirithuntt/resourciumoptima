@@ -10,7 +10,7 @@ public class HibernateUtil {
     public static EntityManagerFactory getEntityManagerFactory() {
         if (entityManagerFactory == null) {
             try {
-                entityManagerFactory = Persistence.createEntityManagerFactory("hibernate-unit");
+                entityManagerFactory = Persistence.createEntityManagerFactory("resourciumoptima");
             } catch (Exception e) {
                 e.printStackTrace();
                 if (entityManagerFactory != null && entityManagerFactory.isOpen()) {
