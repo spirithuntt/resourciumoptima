@@ -11,15 +11,10 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "name")
     private String name;
-    @Column(name = "type")
     private String type;
-    @Column (name = "purchaseDate")
     private String purchaseDate;
-    @Column (name = "maintenanceDate")
     private String maintenanceDate;
-    @Column (name = "state")
     private String state;
 
     @ManyToOne

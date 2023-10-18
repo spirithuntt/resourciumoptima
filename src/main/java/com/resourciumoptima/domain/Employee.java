@@ -12,24 +12,22 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "username")
     private String username;
-    @Column(name = "password")
     private String password;
-    @Column (name = "name")
     private String name;
-    @Column (name = "firstname")
     private String firstname;
-    @Column (name = "email")
     private String email;
-    @Column (name = "position")
     private String position;
-    @Column (name = "hiringDate")
     private String hiringDate;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
 
     public Employee() {
     }

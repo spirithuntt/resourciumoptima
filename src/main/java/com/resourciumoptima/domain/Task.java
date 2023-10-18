@@ -11,19 +11,14 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "deadline")
     private String deadline;
 
-    @Column(name = "priority")
     private String priority;
 
-    @Column(name = "assignedEmployee")
     private String assignedEmployee;
 
-    @Column(name = "status")
     private String status;
 
     @ManyToOne

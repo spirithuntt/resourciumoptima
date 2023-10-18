@@ -2,9 +2,11 @@ package com.resourciumoptima;
 
 import java.io.*;
 
+import com.resourciumoptima.domain.Employee;
 import com.resourciumoptima.repository.EmployeeRepository;
 import com.resourciumoptima.utils.HibernateUtil;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -17,12 +19,26 @@ public class HelloServlet extends HttpServlet {
         message = "Hello World!";
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         sessionFactory = HibernateUtil.getEntityManagerFactory();
-        PrintWriter printWriter = new PrintWriter(System.out);
-        printWriter.println("Session factory is created in init: " + sessionFactory);
-    }
 
+        if (request.getSession().getAttribute("employee") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+        } else {
+            try {
+                EmployeeRepository employeeRepository = new EmployeeRepository();
+                Employee employee = employeeRepository.findById((Long) request.getSession().getAttribute("employee"));
+                if (employee != null) {
+                    request.setAttribute("employee", employee);
+                    request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/dashboard");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public void destroy() {
     }
 }
