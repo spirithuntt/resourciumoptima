@@ -13,20 +13,20 @@ import jakarta.servlet.annotation.*;
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
-    private EntityManagerFactory sessionFactory;
+    private EntityManagerFactory em;
 
     public void init() {
         message = "Hello World!";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        sessionFactory = HibernateUtil.getEntityManagerFactory();
+        em = HibernateUtil.getEntityManagerFactory();
 
         if (request.getSession().getAttribute("employee") == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
+            response.sendRedirect(request.getContextPath() + "/loginPage");
         } else {
             try {
-                EmployeeRepository employeeRepository = new EmployeeRepository();
+                EmployeeRepository employeeRepository = new EmployeeRepository(em.createEntityManager());
                 Employee employee = employeeRepository.findById((Long) request.getSession().getAttribute("employee"));
                 if (employee != null) {
                     request.setAttribute("employee", employee);

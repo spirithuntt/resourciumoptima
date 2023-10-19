@@ -14,8 +14,8 @@ public class Employee {
     private int id;
     private String username;
     private String password;
-    private String name;
-    private String firstname;
+    private String firstName;
+    private String lastName;
     private String email;
     private String position;
     private String hiringDate;
@@ -35,8 +35,8 @@ public class Employee {
     public Employee( String username, String password, String name, String firstname, String email, String position, String hiringDate) {
         this.username = username;
         this.password = password;
-        this.name = name;
-        this.firstname = firstname;
+        this.firstName = name;
+        this.lastName = firstname;
         this.email = email;
         this.position = position;
         this.hiringDate = hiringDate;
@@ -67,20 +67,20 @@ public class Employee {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -113,8 +113,8 @@ public class Employee {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", firstname='" + firstname + '\'' +
+                ", name='" + firstName + '\'' +
+                ", firstname='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", position='" + position + '\'' +
                 ", hiringDate='" + hiringDate + '\'' +
@@ -126,12 +126,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(name, employee.name) && Objects.equals(firstname, employee.firstname) && Objects.equals(email, employee.email) && Objects.equals(position, employee.position) && Objects.equals(hiringDate, employee.hiringDate) && Objects.equals(department, employee.department);
+        return id == employee.id && Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) && Objects.equals(position, employee.position) && Objects.equals(hiringDate, employee.hiringDate) && Objects.equals(department, employee.department) && Objects.equals(role, employee.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, name, firstname, email, position, hiringDate, department);
+        return Objects.hash(id, username, password, firstName, lastName, email, position, hiringDate, department, role);
     }
 }
 

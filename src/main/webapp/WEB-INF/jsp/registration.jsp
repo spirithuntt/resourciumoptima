@@ -16,11 +16,11 @@
     <label for="password2">Confirm Password</label>
     <input type="password" name="password2" id="password2" required>
     <br>
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" required>
-    <br>
     <label for="firstname">First Name</label>
     <input type="text" name="firstname" id="firstname" required>
+    <br>
+    <label for="lastname">Last Name</label>
+    <input type="text" name="lastname" id="lastname" required>
     <br>
     <label for="email">Email</label>
     <input type="email" name="email" id="email" required>
