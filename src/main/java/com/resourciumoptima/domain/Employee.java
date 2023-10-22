@@ -3,6 +3,7 @@ package com.resourciumoptima.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,23 +21,33 @@ public class Employee {
     private String position;
     private String hiringDate;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
+    @ManyToMany(mappedBy = "employees")
+    private List<Department> departments;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
+    @OneToMany(mappedBy = "employee")
+    private List<Reservation> reservations;
+
+    @ManyToMany
+    @JoinTable(
+            name = "employee_task",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "task_id")
+    )
+    private List<Task> tasks;
+
 
     public Employee() {
     }
 
-    public Employee( String username, String password, String name, String firstname, String email, String position, String hiringDate) {
+    public Employee( String username, String password, String firstname, String lastName, String email, String position, String hiringDate) {
         this.username = username;
         this.password = password;
-        this.firstName = name;
-        this.lastName = firstname;
+        this.firstName = firstname;
+        this.lastName = lastName;
         this.email = email;
         this.position = position;
         this.hiringDate = hiringDate;
@@ -113,11 +124,15 @@ public class Employee {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", name='" + firstName + '\'' +
-                ", firstname='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", position='" + position + '\'' +
                 ", hiringDate='" + hiringDate + '\'' +
+                ", departments=" + departments +
+                ", role=" + role +
+                ", reservations=" + reservations +
+                ", tasks=" + tasks +
                 '}';
     }
 
@@ -126,12 +141,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) && Objects.equals(position, employee.position) && Objects.equals(hiringDate, employee.hiringDate) && Objects.equals(department, employee.department) && Objects.equals(role, employee.role);
+        return id == employee.id && Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) && Objects.equals(position, employee.position) && Objects.equals(hiringDate, employee.hiringDate) && Objects.equals(departments, employee.departments) && Objects.equals(role, employee.role) && Objects.equals(reservations, employee.reservations) && Objects.equals(tasks, employee.tasks);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, firstName, lastName, email, position, hiringDate, department, role);
+        return Objects.hash(id, username, password, firstName, lastName, email, position, hiringDate, departments, role, reservations, tasks);
     }
 }
 

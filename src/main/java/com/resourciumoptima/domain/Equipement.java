@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Equipment {
+public class Equipement {
     // Attributs : id, nom, type, date d'achat, date de maintenance, état, etc.
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,10 +21,10 @@ public class Equipment {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    public Equipment() {
+    public Equipement() {
     }
 
-    public Equipment(String name, String type, String purchaseDate, String maintenanceDate, String state) {
+    public Equipement(String name, String type, String purchaseDate, String maintenanceDate, String state) {
         this.name = name;
         this.type = type;
         this.purchaseDate = purchaseDate;
@@ -96,8 +96,8 @@ public class Equipment {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Equipment equipment = (Equipment) o;
-        return id == equipment.id && Objects.equals(name, equipment.name) && Objects.equals(type, equipment.type) && Objects.equals(purchaseDate, equipment.purchaseDate) && Objects.equals(maintenanceDate, equipment.maintenanceDate) && Objects.equals(state, equipment.state) && Objects.equals(employee, equipment.employee);
+        Equipement equipement = (Equipement) o;
+        return id == equipement.id && Objects.equals(name, equipement.name) && Objects.equals(type, equipement.type) && Objects.equals(purchaseDate, equipement.purchaseDate) && Objects.equals(maintenanceDate, equipement.maintenanceDate) && Objects.equals(state, equipement.state) && Objects.equals(employee, equipement.employee);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.resourciumoptima.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,6 +25,10 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
+    @ManyToMany(mappedBy = "tasks")
+    private List<Employee> employees;
+
 
     public Task() {
     }

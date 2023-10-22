@@ -1,8 +1,7 @@
 package com.resourciumoptima.repository;
 
-import com.resourciumoptima.domain.Equipment;
+import com.resourciumoptima.domain.Equipement;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
@@ -11,19 +10,19 @@ public class EquipementRepository {
     @PersistenceContext
     private EntityManager em;
 
-    Equipment findById(Long id) {
-        return em.find(Equipment.class, id);
+    Equipement findById(Long id) {
+        return em.find(Equipement.class, id);
     }
-    List<Equipment> findAll() {
-        return em.createQuery("SELECT e FROM Equipment e", Equipment.class).getResultList();
+    List<Equipement> findAll() {
+        return em.createQuery("SELECT e FROM Equipement e", Equipement.class).getResultList();
     }
-    void save(Equipment equipment) {
-        em.persist(equipment);
+    void save(Equipement equipement) {
+        em.persist(equipement);
     }
-    void update(Equipment equipment) {
-        em.merge(equipment);
+    void update(Equipement equipement) {
+        em.merge(equipement);
     }
-    void delete(Equipment equipment) {
-        em.remove(equipment);
+    void delete(Equipement equipement) {
+        em.remove(equipement);
     }
 }

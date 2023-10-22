@@ -34,6 +34,8 @@ public class EmployeeRepository {
     }
 
     public Employee findById(long id) {
+        System.out.println("EmployeeRepository findById");
+        System.out.println(id);
         return em.find(Employee.class, id);
     }
     public List<Employee> findAll() {

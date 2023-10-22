@@ -13,6 +13,16 @@ public class EmployeeService{
         validate(employee);
         return employeeRepository.save(employee);
     }
+    public Employee updateEmployee(Employee employee) {
+        validate(employee);
+        employeeRepository.update(employee);
+        return employee;
+    }
+    public Employee getEmployeeById(int id) {
+        System.out.println("EmployeeService getEmployeeById");
+        System.out.println(id);
+        return employeeRepository.findById(id);
+    }
         private void validate(Employee employee) {
             if(employee == null || employee.getEmail() == null || employee.getPassword() == null || employee.getFirstName() == null || employee.getLastName() == null){
                 throw new IllegalArgumentException("All fields needed");

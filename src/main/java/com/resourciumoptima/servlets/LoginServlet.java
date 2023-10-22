@@ -39,9 +39,13 @@ public class LoginServlet extends HttpServlet {
             for (Employee employee : employees) {
                 if (employee.getUsername().equals(username) && employee.getPassword().equals(hashedPassword)) {
                     HttpSession session = request.getSession();
-                    session.setAttribute("employee", employee.getId());
+                    session.setAttribute("username", username);
+                    session.setAttribute("id", employee.getId());
+                    session.setAttribute("firstName", employee.getFirstName());
+                    session.setAttribute("lastName", employee.getLastName());
+                    session.setAttribute("email", employee.getEmail());
 
-                    response.sendRedirect("/dashboard");
+                    response.sendRedirect(request.getContextPath() + "/dashboard");
                     return;
                 }
             }
