@@ -18,27 +18,26 @@ public class Task {
 
     private String priority;
 
-    private String assignedEmployee;
-
     private String status;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    private Employee employee;
+    private Employee assignedEmployee;
 
-    @ManyToMany(mappedBy = "tasks")
-    private List<Employee> employees;
+
+
+
 
 
     public Task() {
     }
 
-    public Task(String description, String deadline, String priority, String assignedEmployee, String status) {
+    public Task(String description, String deadline, String priority, Employee  assignedEmployee, String status) {
         this.description = description;
         this.deadline = deadline;
         this.priority = priority;
-        this.assignedEmployee = assignedEmployee;
         this.status = status;
+        this.assignedEmployee = assignedEmployee;
     }
 
     public int getId() {
@@ -73,14 +72,6 @@ public class Task {
         this.priority = priority;
     }
 
-    public String getAssignedEmployee() {
-        return assignedEmployee;
-    }
-
-    public void setAssignedEmployee(String assignedEmployee) {
-        this.assignedEmployee = assignedEmployee;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -89,12 +80,12 @@ public class Task {
         this.status = status;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Employee getAssignedEmployee() {
+        return assignedEmployee;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setAssignedEmployee(Employee assignedEmployee) {
+        this.assignedEmployee = assignedEmployee;
     }
 
     @Override
@@ -104,9 +95,7 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", deadline='" + deadline + '\'' +
                 ", priority='" + priority + '\'' +
-                ", assignedEmployee='" + assignedEmployee + '\'' +
                 ", status='" + status + '\'' +
-                ", employee=" + employee +
                 '}';
     }
 
@@ -116,11 +105,11 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id == task.id && Objects.equals(description, task.description) && Objects.equals(deadline, task.deadline) && Objects.equals(priority, task.priority) && Objects.equals(assignedEmployee, task.assignedEmployee) && Objects.equals(status, task.status) && Objects.equals(employee, task.employee);
+        return id == task.id && Objects.equals(description, task.description) && Objects.equals(deadline, task.deadline) && Objects.equals(priority, task.priority) && Objects.equals(status, task.status) && Objects.equals(assignedEmployee, task.assignedEmployee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, deadline, priority, assignedEmployee, status, employee);
+        return Objects.hash(id, description, deadline, priority, status, assignedEmployee);
     }
 }

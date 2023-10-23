@@ -1,30 +1,43 @@
 package com.resourciumoptima.repository;
 
 import com.resourciumoptima.domain.Task;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+
+import jakarta.persistence.*;
 
 import java.util.List;
 
 public class TaskRepository {
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
 
-    Task findById(Long id) {
+    public TaskRepository(EntityManager em) {
+        this.em = em;
+    }
+
+    public Task save(Task task) {
+        em.getTransaction().begin();
+        em.persist(task);
+        em.getTransaction().commit();
+        return task;
+    }
+
+    public void update(Task task) {
+        em.getTransaction().begin();
+        em.merge(task);
+        em.getTransaction().commit();
+    }
+
+    public void delete(int id) {
+        em.getTransaction().begin();
+        Task task = em.find(Task.class, id);
+        em.remove(task);
+        em.getTransaction().commit();
+    }
+
+    public Task findById(int id) {
         return em.find(Task.class, id);
     }
 
-    List<Task> findAll() {
+    public List<Task> findAll() {
         return em.createQuery("SELECT t FROM Task t", Task.class).getResultList();
-    }
-    void save(Task task) {
-        em.persist(task);
-    }
-    void update(Task task) {
-        em.merge(task);
-    }
-    void delete(Task task) {
-        em.remove(task);
     }
 }

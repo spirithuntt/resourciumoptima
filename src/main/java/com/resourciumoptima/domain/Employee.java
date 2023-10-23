@@ -31,13 +31,11 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private List<Reservation> reservations;
 
-    @ManyToMany
-    @JoinTable(
-            name = "employee_task",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id")
-    )
+    @OneToMany(mappedBy = "assignedEmployee")
     private List<Task> tasks;
+
+
+
 
 
     public Employee() {

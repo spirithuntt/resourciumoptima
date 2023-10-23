@@ -45,12 +45,15 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("lastName", employee.getLastName());
                     session.setAttribute("email", employee.getEmail());
 
+                    System.out.println("User " + username + " logged in");
+
                     response.sendRedirect(request.getContextPath() + "/dashboard");
                     return;
                 }
             }
 
             request.setAttribute("error", "Invalid username or password");
+            System.out.println();
             request.getRequestDispatcher("/WEB-INF/jsp/loginPage.jsp").forward(request, response);
         } finally {
             EntityManagerUtil.closeEntityManager();

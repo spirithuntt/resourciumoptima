@@ -3,6 +3,8 @@ package com.resourciumoptima.service;
 import com.resourciumoptima.domain.Employee;
 import com.resourciumoptima.repository.EmployeeRepository;
 
+import java.util.List;
+
 public class EmployeeService{
     private final EmployeeRepository employeeRepository;
 
@@ -19,8 +21,6 @@ public class EmployeeService{
         return employee;
     }
     public Employee getEmployeeById(int id) {
-        System.out.println("EmployeeService getEmployeeById");
-        System.out.println(id);
         return employeeRepository.findById(id);
     }
         private void validate(Employee employee) {
@@ -43,4 +43,7 @@ public class EmployeeService{
         return password.length() > 3;
     }
 
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
 }

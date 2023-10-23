@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "RouteServlet", value = {"/loginPage", "/registration", "/dashboard", "/editProfile"})
+@WebServlet(name = "RouteServlet", value = {"/loginPage", "/registration", "/dashboard", "/editProfile", "/addTask", "/editTask"})
 public class RouteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,6 +31,14 @@ public class RouteServlet extends HttpServlet {
             case "/editProfile":
                 RequestDispatcher profileDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/updateProfile.jsp");
                 profileDispatcher.forward(request, response);
+                break;
+            case "/addTask":
+                RequestDispatcher addTaskDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/addTask.jsp");
+                addTaskDispatcher.forward(request, response);
+                break;
+            case "/editTask":
+                RequestDispatcher editTaskDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editTask.jsp");
+                editTaskDispatcher.forward(request, response);
                 break;
             default:
                 response.sendRedirect("/errorPage");
