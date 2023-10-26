@@ -14,8 +14,8 @@ public class EquipementService {
         validate(equipement);
         return equipementRepository.save(equipement);
     }
-    
-    private void validate(Equipement equipement) {
+
+    void validate(Equipement equipement) {
         if(equipement == null || equipement.getName() == null){
             throw new IllegalArgumentException("All fields needed");
         }
