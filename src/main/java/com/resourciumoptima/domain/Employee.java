@@ -28,7 +28,7 @@ public class Employee {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;
 
     @OneToMany(mappedBy = "assignedEmployee")

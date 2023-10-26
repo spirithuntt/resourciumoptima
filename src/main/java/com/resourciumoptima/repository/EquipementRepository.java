@@ -7,22 +7,31 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
 public class EquipementRepository {
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
 
-    Equipement findById(Long id) {
-        return em.find(Equipement.class, id);
+    public EquipementRepository(EntityManager em) {
+        this.em = em;
     }
-    List<Equipement> findAll() {
-        return em.createQuery("SELECT e FROM Equipement e", Equipement.class).getResultList();
-    }
-    void save(Equipement equipement) {
+
+    public Equipement save(Equipement equipement) {
+        em.getTransaction().begin();
         em.persist(equipement);
+        em.getTransaction().commit();
+        return equipement;
     }
-    void update(Equipement equipement) {
+
+    public void update(Equipement equipement) {
+        em.getTransaction().begin();
         em.merge(equipement);
+        em.getTransaction().commit();
     }
-    void delete(Equipement equipement) {
+
+    public void delete(long id) {
+        em.getTransaction().begin();
+        Equipement equipement = em.find(Equipement.class, id);
         em.remove(equipement);
+        em.getTransaction().commit();
     }
+
+
 }

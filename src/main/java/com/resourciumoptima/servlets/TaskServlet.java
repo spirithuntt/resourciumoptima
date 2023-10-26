@@ -8,24 +8,21 @@ import com.resourciumoptima.repository.TaskRepository;
 import com.resourciumoptima.service.EmployeeService;
 import com.resourciumoptima.service.TaskService;
 import com.resourciumoptima.utils.EntityManagerUtil;
-import jakarta.persistence.*;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.persistence.EntityManager;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
-import java.time.LocalDate;
-@WebServlet(name = "TaskServlet", value = "/tasks")
+
+@WebServlet(name = "TaskServlet", value = "/createTask")
 public class TaskServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("testttt");
         EntityManager entityManager = EntityManagerUtil.getEntityManager();
         TaskService taskService = new TaskService(new TaskRepository(entityManager));
         EmployeeService employeeService = new EmployeeService(new EmployeeRepository(entityManager));
@@ -40,18 +37,13 @@ public class TaskServlet extends HttpServlet {
             request.setAttribute("employees", employees);
 
 
-
             System.out.println(tasks);
             System.out.println(employees);
-
             request.getRequestDispatcher("/WEB-INF/jsp/addTask.jsp").forward(request, response);
 
         } finally {
             EntityManagerUtil.closeEntityManager();
         }
-
-        System.out.println("testttt");
-
         request.getRequestDispatcher("/WEB-INF/jsp/addTask.jsp").forward(request, response);
     }
 
@@ -85,7 +77,7 @@ public class TaskServlet extends HttpServlet {
 
         System.out.println(assignedEmployee);
 
-        response.sendRedirect(request.getContextPath() + "/tasks");
+//        response.sendRedirect(request.getContextPath() + "/tasks");
     }
 
     private LocalDate parseDate(String dateString) {

@@ -5,7 +5,7 @@
 <div class="modal fade" id="modal-tasks-add" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="${pageContext.request.contextPath}/tasks" method="POST" id="form" >
+            <form action="${pageContext.request.contextPath}/createTask" method="POST" id="form" >
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label" for="description">Description</label>

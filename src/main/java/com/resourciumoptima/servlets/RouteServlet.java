@@ -36,8 +36,9 @@ public class RouteServlet extends HttpServlet {
                 RequestDispatcher addTaskDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/addTask.jsp");
                 addTaskDispatcher.forward(request, response);
                 break;
-            case "/editTask":
-                RequestDispatcher editTaskDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editTask.jsp");
+
+                case "/editTask":
+                RequestDispatcher editTaskDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/update-task.jsp");
                 editTaskDispatcher.forward(request, response);
                 break;
             default:
