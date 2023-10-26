@@ -38,32 +38,8 @@
     <thead class="bg-primary text-white">
     <tr>
       <th>ID</th>
-      <th>Department Name</th>
-      <th>Description</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>1</td>
-      <td>Department A</td>
-      <td>A description of Department A</td>
-      <td>
-        <button class="btn btn-primary" onclick="editDepartment(1)">Edit</button>
-        <button class="btn btn-danger" onclick="deleteDepartment(1)">Delete</button>
-      </td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Department B</td>
-      <td>A description of Department B</td>
-      <td>
-        <button class="btn btn-primary" onclick="editDepartment(2)">Edit</button>
-        <button class="btn btn-danger" onclick="deleteDepartment(2)">Delete</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<%--      tasks--%>
+
 </main>
 
 <div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
@@ -89,12 +65,5 @@
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
-<script>
-  function editDepartment(id) {
-  }
-
-  function deleteDepartment(id) {
-  }
-</script>
 </body>
 </html>

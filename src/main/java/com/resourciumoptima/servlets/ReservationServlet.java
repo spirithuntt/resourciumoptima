@@ -22,7 +22,6 @@ import java.util.List;
 public class ReservationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = EntityManagerUtil.getEntityManager();
 
         try {
@@ -41,10 +40,17 @@ public class ReservationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("doPost reservation");
+
         int reservationUserId = Integer.parseInt(request.getParameter("user"));
         int reservationEquipementId = Integer.parseInt(request.getParameter("assignedTo"));
         String reservationDateStr = request.getParameter("reservationDate");
         String returnDateStr = request.getParameter("returnDate");
+
+
+        System.out.println(reservationUserId);
+        System.out.println(reservationEquipementId);
+        System.out.println(reservationDateStr);
 
         Reservation reservation = new Reservation();
 
@@ -90,7 +96,6 @@ public class ReservationServlet extends HttpServlet {
             e.printStackTrace();
         } finally {
             entityManager.close();
-//            entityManagerFactory.close();
         }
 
         System.out.println("Reservation saved successfully");

@@ -1,8 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.resourciumoptima.domain.Employee" %>
 <%@ page import="java.util.List" %>
+<html>
+<head>
+    <title>Add Reservation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+    </style>
+</head>
+<body>
 <!-- MODAL -->
-<div class="modal fade" id="modal-tasks-add" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+<div id="modal-tasks-add" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="${pageContext.request.contextPath}/createTask" method="POST" id="form" >
@@ -23,8 +31,6 @@
                             <%
                                 List<Employee> employees = (List<Employee>) request.getAttribute("employees");
                                 for (Employee employee : employees) {
-
-
                             %>
                             <option value="<%= employee.getId() %>"><%= employee.getFirstName() %> <%= employee.getLastName() %></option>
                             <% } %>
@@ -39,7 +45,7 @@
                             <option value="MEDIUM">Medium</option>
                             <option value="HIGH">High</option>
                         </select>
-                        </div>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label" for="status">Status</label>
                         <select class="form-select" id="status" name="status" required>
@@ -48,14 +54,16 @@
                             <option value="IN_PROGRESS">In progress</option>
                             <option value="DONE">Done</option>
                         </select>
-                </div>
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="button" data-bs-dismiss="modal" class="btn btn-secondary" >Cancel</button>
-                    <button type="submit" name="save" class="btn btn-primary task-action-btn" id="save">Save</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary" >Cancel</button>
+                        <button type="submit" name="save" class="btn btn-primary task-action-btn" id="save">Save</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+</body>
+</html>

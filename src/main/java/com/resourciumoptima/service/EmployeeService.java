@@ -23,7 +23,7 @@ public class EmployeeService{
     public Employee getEmployeeById(int id) {
         return employeeRepository.findById(id);
     }
-        private void validate(Employee employee) {
+        void validate(Employee employee) {
             if(employee == null || employee.getEmail() == null || employee.getPassword() == null || employee.getFirstName() == null || employee.getLastName() == null){
                 throw new IllegalArgumentException("All fields needed");
             }

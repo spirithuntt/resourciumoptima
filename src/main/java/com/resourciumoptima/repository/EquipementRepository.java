@@ -33,5 +33,9 @@ public class EquipementRepository {
         em.getTransaction().commit();
     }
 
+    public Equipement findById(long id) {
+        return em.find(Equipement.class, id);
+    }
+
 
 }

@@ -16,7 +16,7 @@ public class HelloServlet extends HttpServlet {
     private EntityManagerFactory em;
 
     public void init() {
-        message = "Hello World!";
+        message = "";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

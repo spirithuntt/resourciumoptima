@@ -16,7 +16,7 @@ public class DepartmentService {
         return departmentRepository.save(department);
     }
 
-    private void validate(Department department) {
+    void validate(Department department) {
         if(department == null || department.getName() == null){
             throw new IllegalArgumentException("All fields needed");
         }

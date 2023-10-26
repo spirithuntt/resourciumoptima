@@ -29,6 +29,8 @@ public class ReservationRepository {
             em.remove(reservation);
             em.getTransaction().commit();
         }
-
+        public Reservation findById(long id) {
+            return em.find(Reservation.class, id);
+        }
 
 }

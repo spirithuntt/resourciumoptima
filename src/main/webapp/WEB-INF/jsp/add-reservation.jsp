@@ -5,10 +5,13 @@
 <html>
 <head>
     <title>Title</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+  </style>
 </head>
 <body>
 <!-- MODAL -->
-<div class="modal fade" id="modal-reservation-add" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+<div  id="modal-reservation-add" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <form action="${pageContext.request.contextPath}/reservations" method="POST" id="form" >
@@ -39,13 +42,15 @@
             </select>
           </div>
           <div class="mb-3">
-            <label class="form-label">Reservation Date</label>
-            <input type="date" class="form-control" name="reservationDate">
-          </div>
+          <label class="form-label">Reservation Date</label>
+          <input type="date" class="form-control" name="reservationDate" required>
+        </div>
           <div class="mb-3">
             <label class="form-label">Return Date</label>
-            <input type="date" class="form-control" name="returnDate">
+            <input type="date" class="form-control" name="returnDate" required>
           </div>
+
+
 
 
         </div>
